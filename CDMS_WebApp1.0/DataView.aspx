@@ -89,6 +89,19 @@
                     </asp:DropDownList>
                 </td>
                 <td class="style5">
+                    
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; Condition :
+                    <asp:DropDownList ID="ConditionDropDownList" runat="server" Width="171px" AutoPostBack="true"  >
+                        <Items>
+                            <asp:ListItem>></asp:ListItem>
+                            <asp:ListItem><</asp:ListItem>
+                            <asp:ListItem>>=</asp:ListItem>
+                            <asp:ListItem><=</asp:ListItem>
+                            <asp:ListItem>=</asp:ListItem>
+                        </Items>
+                    </asp:DropDownList>
+                </td>
+                <td class="style5">
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <asp:Label ID="valueLabel" runat="server" Text="Contamination Level :"></asp:Label>
                     <asp:TextBox ID="Contamination_LevelTextBox" runat="server"></asp:TextBox>
                 </td>

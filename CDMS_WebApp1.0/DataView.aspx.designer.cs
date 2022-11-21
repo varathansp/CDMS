@@ -40,6 +40,15 @@ namespace CDMS_WebApp1._0 {
         protected global::System.Web.UI.WebControls.DropDownList SmearDropDownList;
         
         /// <summary>
+        /// ConditionDropDownList control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.DropDownList ConditionDropDownList;
+        
+        /// <summary>
         /// valueLabel control.
         /// </summary>
         /// <remarks>
