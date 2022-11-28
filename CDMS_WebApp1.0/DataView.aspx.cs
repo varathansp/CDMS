@@ -71,12 +71,12 @@ namespace CDMS_WebApp1._0
                     GridView1.Visible = false;
                     if (SmearDropDownList.Text == "S")
                     {
-                        sql = "SELECT DATE_FORMAT(Date, '%d/%m/%Y') as Date,Unit,Room_No,Contamination_level,Remarks FROM new_cdms where Smear_airsample='" + SmearDropDownList.Text + "'  and date between '" + FromDateTextBox.Value + "' and '" + ToDateTextBox.Value + "' and CAST(contamination_level AS double) " + ConditionDropDownList.Text +  " '" + Convert.ToDecimal(Contamination_LevelTextBox.Text) + "' order by date";
+                        sql = "SELECT DATE_FORMAT(Date, '%d/%m/%Y') as Date,Unit,Room_No,Contamination_level,Remarks FROM new_cdms where contamination_level != 'BDL' and contamination_level != '' and Smear_airsample='" + SmearDropDownList.Text + "'  and date between '" + FromDateTextBox.Value + "' and '" + ToDateTextBox.Value + "' and CAST(contamination_level AS double) " + ConditionDropDownList.Text +  " '" + Convert.ToDecimal(Contamination_LevelTextBox.Text) + "' order by date";
 
                     }
                     else
                     {
-                        sql = "SELECT DATE_FORMAT(Date, '%d/%m/%Y') as Date,Unit,Room_No,Air_activity,Remarks FROM new_cdms where Smear_airsample='" + SmearDropDownList.Text + "' and date between '" + FromDateTextBox.Value + "' and '" + ToDateTextBox.Value + "' and CAST(Air_activity AS double) " +  ConditionDropDownList.Text   + " '" + Convert.ToDecimal(Contamination_LevelTextBox.Text) + "' order by date";
+                        sql = "SELECT DATE_FORMAT(Date, '%d/%m/%Y') as Date,Unit,Room_No,Air_activity,Remarks FROM new_cdms where Air_activity !='BDL' and Air_activity !='' and Smear_airsample='" + SmearDropDownList.Text + "' and date between '" + FromDateTextBox.Value + "' and '" + ToDateTextBox.Value + "' and CAST(Air_activity AS double) " +  ConditionDropDownList.Text   + " '" + Convert.ToDecimal(Contamination_LevelTextBox.Text) + "' order by date";
 
                     }
                     MySqlCommand sCommand = new MySqlCommand(sql, connection);
