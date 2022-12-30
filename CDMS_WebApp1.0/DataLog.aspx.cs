@@ -156,6 +156,22 @@ namespace CDMS_WebApp1._0
         {
             try
             {
+                string previousShift = string.Empty;
+                DateTime previousShiftDate = Convert.ToDateTime(AddShiftResponse.Date); 
+                switch (AddShiftResponse.Shift)
+                {
+                    case "I":
+                        previousShift = "III";
+                        previousShiftDate = previousShiftDate.AddDays(-1);
+                        break;
+                    case "II":
+                        previousShift = "I";
+                        break;
+                    case "III":
+                        previousShift = "II";
+                        break;
+                }
+
                 if (SmearDropDownList.Text == "A")
                 {
                     
@@ -163,7 +179,7 @@ namespace CDMS_WebApp1._0
                     connection.Open();
                     string s33;
 
-                    s33 = "select sl_no ,date,Room_No, MAX(Air_activity) as air_activity from new_cdms WHERE (Air_activity != '' && Air_activity != 'BDL') && date != CURDATE() && Current_shift='III' GROUP by date   order by date desc limit 1;";
+                    s33 = "select sl_no ,date,Room_No, MAX(Air_activity) as air_activity from new_cdms WHERE (Air_activity != '' && Air_activity != 'BDL') && date ='"+ previousShiftDate.ToString("yyyy-MM-dd") + "' && Current_shift= '" + previousShift + "'  limit 1;";
 
                     MySqlCommand cmd33 = new MySqlCommand(s33, connection);
                     MySqlDataReader rs33;
@@ -215,7 +231,7 @@ namespace CDMS_WebApp1._0
                     connection.Open();
 
                     string s34;
-                    s34 = "select sl_no ,date,Room_No, MAX(contamination_level) as contamination_level from new_cdms WHERE (contamination_level != '' && contamination_level != 'BDL') && date != CURDATE() && Current_shift='III' GROUP by date   order by date desc limit 1;";
+                    s34 = "select sl_no ,date,Room_No, MAX(contamination_level) as contamination_level from new_cdms WHERE (contamination_level != '' && contamination_level != 'BDL') && date ='" + previousShiftDate.ToString("yyyy-MM-dd") + "' && Current_shift= '" + previousShift + "'  limit 1;";
 
                     MySqlCommand cmd34 = new MySqlCommand(s34, connection);
                     MySqlDataReader rs34;
