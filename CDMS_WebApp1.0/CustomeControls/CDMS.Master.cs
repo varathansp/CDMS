@@ -29,10 +29,15 @@ namespace CDMS_WebApp1._0.CustomeControls
         }
 
 
-        protected void Button1_Click(object sender, EventArgs e)
+        protected void SignOut_Click(object sender, EventArgs e)
         {
             Session.RemoveAll();
             Response.Redirect("Login.aspx");
+        }
+
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            //to avoid calling the signout function
         }
     }
 }

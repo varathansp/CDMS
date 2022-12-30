@@ -41,6 +41,7 @@ namespace CDMS_WebApp1._0
             if (rs4440.HasRows)
             {
                 rs4440.Read();
+                Session.Contents.RemoveAll();
                 Session["UserId"] = rs4440.GetString(0);
                 Response.Redirect("Home.aspx");
             }

@@ -10,29 +10,29 @@
     <asp:ContentPlaceHolder ID="head" runat="server">
     </asp:ContentPlaceHolder>
 
-    </head>
+</head>
 <body>
     <form id="form1" runat="server" autocomplete="on">
         <nav id="nav">
             <div>
                 <div style="display: inline-block">
                     <ul>
-                         <li ><a href="Home.aspx">Home</a></li>
-                         <li><a href="AddShift.aspx">Add Shift</a></li>
-                         <li><a href="Loose_Chart.aspx">Chart Loose Contamination</a></li>
-                         <li><a href="Air_Chart.aspx">Chart Air Activity</a></li>
-                        
-                        <li ><a href="DataLog.aspx">Data Log</a></li>
-                        <li ><a href="DataView.aspx">Data View</a></li>
-                        
-                        <li ><a href="Response.aspx">Response</a></li>
-                        
+                        <li><a href="Home.aspx">Home</a></li>
+                        <li><a href="AddShift.aspx">Add Shift</a></li>
+                        <li><a href="Loose_Chart.aspx">Chart Loose Contamination</a></li>
+                        <li><a href="Air_Chart.aspx">Chart Air Activity</a></li>
+
+                        <li><a href="DataLog.aspx">Data Log</a></li>
+                        <li><a href="DataView.aspx">Data View</a></li>
+
+                        <li><a href="Response.aspx">Response</a></li>
+
                         <li><a href="http://10.38.31.10/">IHPA</a></li>
-                        <li><a href="http://127.0.0.1/hpelog/index.php" >e-Log</a></li>
-                        <li><a href="http://10.38.2.201/lrw/login.php" >LRW</a></li>
-                        <li><a href="http://kkweb/KKNPP/NWKKWEB/mainpg.jsp" >KKWEB</a></li>
-                        
-                        
+                        <li><a href="http://127.0.0.1/hpelog/index.php">e-Log</a></li>
+                        <li><a href="http://10.38.2.201/lrw/login.php">LRW</a></li>
+                        <li><a href="http://kkweb/KKNPP/NWKKWEB/mainpg.jsp">KKWEB</a></li>
+
+
                     </ul>
                 </div>
 
@@ -40,21 +40,24 @@
         </nav>
         <div>
             &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:Panel ID="Panel1" runat="server">
-                <asp:Label ID="Label1" runat="server" Text="User Name:" 
-                    style="color: #FFFFFF; background-color: #003300"></asp:Label>
-                <asp:Label ID="UserNameLabel" runat="server" 
-                    style="font-weight: 700; color: #FFFFFF; background-color: #FF0000; font-size: medium;" 
-                    Text=""></asp:Label>
-                <asp:Button ID="Button1" runat="server" onclick="Button1_Click" 
-                    style="color: #FFFFFF; background-color: #CC3300" Text="Sign Out" 
-                    Width="114px" />
-            </asp:Panel>
-&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
-            </asp:ContentPlaceHolder>
+        <asp:Panel ID="Panel1" runat="server">
+             <asp:Button ID="Button1" runat="server" OnClick="Button1_Click" Text=""  Width="1px" BorderColor="White" BorderStyle="None" ForeColor="White" />
+            <asp:Label ID="Label1" runat="server" Text="User Name:"
+                Style="color: #FFFFFF; background-color: #003300"></asp:Label>
+            <asp:Label ID="UserNameLabel" runat="server"
+                Style="font-weight: 700; color: #FFFFFF; background-color: #FF0000; font-size: medium;"
+                Text=""></asp:Label>
+            <asp:Button ID="SignOut" runat="server" OnClick="SignOut_Click"
+                Style="color: #FFFFFF; background-color: #CC3300" Text="Sign Out"
+                Width="114px" />
+            
+        </asp:Panel>
+            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            
+       
+        <asp:ContentPlaceHolder ID="ContentPlaceHolderBody" runat="server">
+        </asp:ContentPlaceHolder>
         </div>
-
     </form>
 </body>
 </html>
