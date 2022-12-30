@@ -3,8 +3,8 @@
 <asp:Content ID="Content1" ContentPlaceHolderID="ContentPlaceHolderBody" runat="server">
    
     
-    <div style="display:inline-flex; height: 818px; width: 946px; background-color: #FFFFFF;">
-        <div >
+    <div style="display:inline-flex;">
+        <div style="flex: 1;">
             <table >
                 <tr>
                     <td colspan="2">
@@ -50,7 +50,7 @@
 
         </div>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 
-        <div >
+        <div style="flex: 1;">
             <table class="style2">
                 <tr>
                     <td colspan="2">
@@ -120,7 +120,7 @@
             </table>
         </div>
         &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <div  >
+        <div  style="flex: 1;">
                 <table class="style6" >
                     <tr>
                         <td colspan="2">
@@ -139,7 +139,7 @@
                     <tr>
                         <td colspan="2"></td>
                     </tr>
-                    &nbsp;<tr>
+                    <tr>
                         <td class="style7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                             Review</td>
                         <td class="style5">
@@ -160,7 +160,7 @@
                     <tr>
                         <td colspan="2" style="background-color: #FFFFFF"></td>
                     </tr>
-                    &nbsp;<tr>
+                    <tr>
                         <td class="style7">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; 
                             Review</td>
                         <td class="style5">
@@ -178,19 +178,25 @@
                                 </Items>
                             </asp:DropDownList></td>
                     </tr>
+                     <tr>
+                        <td colspan="2"></td>
+                    </tr>
                     <tr>
-                        <td colspan="2">
-        <asp:Button ID="AddShiftButton" runat="server" Text="Add Shift" OnClick="AddShiftButton_Click" />
+                        <td></td>
+                        <td colspan="2" >
+        <asp:Button ID="AddShiftButton" runat="server" Text="Add Shift" OnClick="AddShiftButton_Click" Width="178px"  />
                         </td>
                     </tr>
                 </table>
             </div>
          &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
-        <div style="position:relative; top: -1px; left: 1px;">
-            <div style="position:absolute; top:50%;left:50%">
-            </div>
+       
+        
     </div>
-    </div>
+     <div style="display:inline-flex;">
+            <asp:Label ID="ExistingShiftLabel" runat="server"></asp:Label> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+            <asp:Button ID="UseExistingShift" runat="server" Visible="false" Text="Use This Shift" OnClick="UseExistingShift_Click" />
+     </div>
     
 </asp:Content>
 <asp:Content ID="Content2" runat="server" contentplaceholderid="head">

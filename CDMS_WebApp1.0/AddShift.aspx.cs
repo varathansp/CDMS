@@ -16,6 +16,7 @@ namespace CDMS_WebApp1._0
     {
         private static string _connectionString;
 
+        private static AddShiftModel existingShift = null;
 
 
         protected void Page_Load(object sender, EventArgs e)
@@ -25,20 +26,14 @@ namespace CDMS_WebApp1._0
                 if (!IsPostBack)
                 {
 
-                    if (Request.QueryString["IsEmptyShift"] != null && Request.QueryString["IsEmptyShift"].ToString() == "false")
+                    if (Request.QueryString["IsEmptyShift"] != null && Request.QueryString["IsEmptyShift"].ToString() == "true")
                     {
-
-
-
-                        //ClientScript.RegisterStartupScript(this.GetType(), "Info", "alert('Please add the shift first');",true);
+                        ClientScript.RegisterStartupScript(this.GetType(), "Info", "alert('Please add the shift first');",true);
                     }
                     DateText.Text = DateTime.Now.ToShortDateString();
                 }
                 _connectionString = ConfigurationManager.ConnectionStrings["CDMS_ConnectionString"].ConnectionString;
-                AddShiftModel addshift = new AddShiftModel();
-                Session["SessionShift"] = addshift;
-
-                Response.Redirect("DataLog.aspx");
+                
                 MySqlConnection connection = new MySqlConnection(_connectionString);
                 connection.Open();
                 string s6;
@@ -144,61 +139,22 @@ namespace CDMS_WebApp1._0
             _connectionString = ConfigurationManager.ConnectionStrings["CDMS_ConnectionString"].ConnectionString;
             MySqlConnection connection = new MySqlConnection(_connectionString);
             connection.Open();
-            string sql2 = "SELECT COUNT(ID) FROM shift WHERE date = '" + Convert.ToDateTime(DateText.Text).ToString("yyyy-MM-dd") + "' and  Current_Shift = '" + ShiftDropDownList.Text + "'";
+            string sql2 = "SELECT * FROM shift WHERE date = '" + Convert.ToDateTime(DateText.Text).ToString("yyyy-MM-dd") + "' and  Current_Shift = '" + ShiftDropDownList.Text + "'";
 
             MySqlCommand cmd2 = new MySqlCommand(sql2, connection);
             MySqlDataReader rs1z;
              rs1z = cmd2.ExecuteReader();
-             rs1z.Read();
-
-            
-            //var rows = cmd2.ExecuteScalar();
-            //connection.Close();
-
-
-            //Dictionary<string, string> addShiftDictionary = new Dictionary<string, string>();
-            //if (Request.QueryString["EditMode"].ToString() == "true")
-            //{
-            //    addShiftDictionary.Add("EditMode", "true");
-            //}
-            //else
-            //{
-            //    addShiftDictionary.Add("EditMode", "false");
-            //}
-            //addShiftDictionary.Add("FromAddShift", "true");
-            //addShiftDictionary.Add("Date", DateText.Text);
-            //addShiftDictionary.Add("Shift", ShiftDropDownList.Text);
-            //addShiftDictionary.Add("Crew", CrewDropDownList.Text );
-
-            //addShiftDictionary.Add("ShiftTechnician", ShiftTechnicianDropDownList.Text );
-            //addShiftDictionary.Add("T2Technician", T2TechnicianDropDownList.Text );
-            //addShiftDictionary.Add("ContractStaff1",ContractStaff1DropDownList.Text );
-            //addShiftDictionary.Add("ContractStaff2", ContractStaff2DropDownList.Text);
-            //addShiftDictionary.Add("ContractStaff3", ContractStaff3DropDownList.Text);
-
-
-            //addShiftDictionary.Add("Physicist1", Physicist1DropDownList.Text);
-            //addShiftDictionary.Add("Physicist1Notes", Physicist1Notes.Text);
-            //addShiftDictionary.Add("Physicist2", Physicist2DropDownList.Text);
-            //addShiftDictionary.Add("Physicist2Notes", Physicist2Notes.Text); 
-            //addShiftDictionary.Add("PhysicistRSD", PhysicistRSDDropDownList.Text);
-
-            //StringBuilder queryString = new StringBuilder();
-
-            //foreach (var keyValuePair in addShiftDictionary)
-            //{
-            //    queryString.Append(keyValuePair.Key + "=" + keyValuePair.Value + "&");
-            //}
-            //queryString.Length--;
-
-            //var query = queryString.ToString();
-
-            //Response.Redirect("DataLog.aspx?" + query);
-
-            //var noOfRows = Convert.ToInt32(rows);
+             
+            string shiftText = string.Empty;
             if (rs1z.HasRows)
             {
-                AddShiftModel existingShift = new AddShiftModel();
+                while ((rs1z.Read()))
+                {
+                    
+                     shiftText ="<b>Existing Shift</b>"  + "<br />" + "Date :" + Convert.ToDateTime(rs1z["Date"].ToString()).ToString("yyyy-MM-dd") + "<br />" + "  Shift : " + (rs1z["Current_Shift"].ToString()) + "<br />" +  " Crew : " + (rs1z["Current_Shift"].ToString());
+                }
+                rs1z.Close();
+                existingShift = new AddShiftModel();
                 existingShift.Date = DateText.Text;
                 existingShift.Shift = ShiftDropDownList.Text;
                 existingShift.Crew = CrewDropDownList.Text;
@@ -212,12 +168,13 @@ namespace CDMS_WebApp1._0
                 existingShift.Physicist2 = Physicist2DropDownList.Text;
                 existingShift.Physicist2Notes = Physicist2Notes.Text;
                 existingShift.PhysicistRSD = PhysicistRSDDropDownList.Text;
-                Session["SessionShift"] = existingShift;
 
                 var message = "Shift " + ShiftDropDownList.Text + " is already added for the date " + Convert.ToDateTime(DateText.Text).ToString("yyyy-MM-dd");
                 ClientScript.RegisterStartupScript(this.GetType(), "Info", "alert('" + message + "');", true);
 
-                Response.Redirect("DataLog.aspx");
+                ExistingShiftLabel.Text = shiftText;
+                UseExistingShift.Visible = true;
+                connection.Close();
             }
             else
             {
@@ -236,19 +193,23 @@ namespace CDMS_WebApp1._0
                 addshift.Physicist2 = Physicist2DropDownList.Text;
                 addshift.Physicist2Notes = Physicist2Notes.Text;
                 addshift.PhysicistRSD = PhysicistRSDDropDownList.Text;
-
+                connection.Close();
                 connection.Open();
-                string sql = "insert into shift values('','" + Convert.ToDateTime(DateText.Text).ToString("yyyy-MM-dd") + "','" + ShiftDropDownList.Text + "','" + CrewDropDownList.Text + "','" + Physicist1DropDownList.Text + "', '" + Physicist1Notes.Text + "','"
-                       + Physicist2DropDownList.Text + "','" + Physicist2Notes.Text + "','" + PhysicistRSDDropDownList.Text + "','" + ShiftTechnicianDropDownList.Text + "','" + T2TechnicianDropDownList.Text + "','" + ContractStaff1DropDownList.Text
-                       + "','" + ContractStaff2DropDownList.Text + "','" + ContractStaff3DropDownList.Text + "')";
+                //string sql = "insert into shift values('','" + Convert.ToDateTime(DateText.Text).ToString("yyyy-MM-dd") + "','" + ShiftDropDownList.Text + "','" + CrewDropDownList.Text + "','" + Physicist1DropDownList.Text + "', '" + Physicist1Notes.Text + "','"
+                //       + Physicist2DropDownList.Text + "','" + Physicist2Notes.Text + "','" + PhysicistRSDDropDownList.Text + "','" + ShiftTechnicianDropDownList.Text + "','" + T2TechnicianDropDownList.Text + "','" + ContractStaff1DropDownList.Text
+                //       + "','" + ContractStaff2DropDownList.Text + "','" + ContractStaff3DropDownList.Text + "')";
+                string sql = "insert into shift values('','" + Convert.ToDateTime(DateText.Text).ToString("yyyy-MM-dd") + "','" + ShiftDropDownList.Text + "','" + CrewDropDownList.Text + "','" + PhysicistRSDDropDownList.Text + "','" + Physicist1DropDownList.Text + "','"
+                      + Physicist2DropDownList.Text + "','" + ShiftTechnicianDropDownList.Text + "','" + ContractStaff1DropDownList.Text
+                      + "','" + ContractStaff2DropDownList.Text + "','" + ContractStaff3DropDownList.Text + "')";
 
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
                 cmd.ExecuteNonQuery();
-
-                // ComboBox19.Text = n4
+                
                 ClientScript.RegisterStartupScript(this.GetType(), "Info", "alert('Shift Added');", true);
                 Session["SessionShift"] = addshift;
 
+                ExistingShiftLabel.Text = string.Empty;
+                UseExistingShift.Visible = false;
                 Response.Redirect("DataLog.aspx");
             }
         }
@@ -303,6 +264,12 @@ namespace CDMS_WebApp1._0
                 //ContractStaff2DropDownList.Text = "Ramarajan P";
                 ContractStaff3DropDownList.Text = "Anandaraman";
             }
+        }
+
+        protected void UseExistingShift_Click(object sender, EventArgs e)
+        {
+            Session["SessionShift"] = existingShift;
+            Response.Redirect("DataLog.aspx");
         }
     }
 }
