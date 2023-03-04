@@ -311,16 +311,11 @@ namespace CDMS_WebApp1._0
 
 
                 string sql = "insert into new_cdms values(" + n1.ToString() + ",'" + Convert.ToDateTime(AddShiftResponse.Date).ToString("yyyy-MM-dd") + "','"
-                    + CountingSystemDropDownList.Text + "','" + CounterEfficiencyTextBox.Text + "','" + Convert.ToDateTime(AsON.Text).ToString("yyyy-MM-dd") + "', '" + RackDropDownList.Text + "','"
-                    + SampleDescriptionDropDownList.Text + "','" + SmearDropDownList.Text + "','" + AerosolDropDownList.Text + "','" + TimeofSamplingTextBox.Text + "','" + TimeofCountingTextBox.Text + "','" + ElapsedTimeTextBox.Text
-                    + "','" + AreaCorrectionFactorTextBox.Text + "','" + DecayCorrectionFactorTextBox.Text + "','" + HalfLifeTextBox.Text + "','" + FlowrateTextBox.Text + "','" + SamplingTimeTextBox.Text + "','" + TotalAirSampledTextBox.Text
-                    + "','" + BKGCountTimeTextBox.Text + "','" + SampleCountTimeTextBox.Text + "','" + BKGCountsTextBox.Text + "','" + SampleCountsTextBox.Text + "','" + NetCountsTextBox.Text + "','" + TotalAreaSwipedTextBox.Text
-                    + "','" + ContaminationLevelTextBox.Text + "','" + AirActivityTextBox.Text + "','" + DACTextBox.Text + "','','" + RemarksTextBox.Text + "',"
-                    + UnitDropDownList.Text + ",'" + StatusDropDownList.Text + "','" + LLDTextBox.Text + "','" + MDAdpmTextBox.Text + "','" + MDABqTextBox.Text + "','" + LLDBKGTextBox.Text
-                    + "','" + LivedTextBox.Text + "'," + LocationUnitDropDownList.Text + ",'" + AddShiftResponse.Shift + "','','', '','','','','','','','','"
-                    + LocationUnitDropDownList.Text + "','" + string.Empty + "','" + PlantStatusDropDownList.Text + "','','" + MaterialIdTextBox.Text + "','"
-                    + Convert.ToDateTime(ContaminationDateTextBox.Text).ToString("yyyy-MM-dd HH:mm:ss") + "','" + Session["UserId"].ToString() + "','" + RequestedByTextBox.Text + "','" + LocationFromDropDownList.Text
-                    + "','" + LocationToDropDownList.Text + "','" + PurposeDropDownList.Text + "','" + InstrumentLocationDropDownList.Text + "','" + AddShiftResponse.T2Technician + "','" + MaterialCountedByDropDownList.Text + "')";
+                    + SampleDescriptionDropDownList.Text + "','" + SmearDropDownList.Text + "','" + FlowrateTextBox.Text + "','" + SamplingTimeTextBox.Text + "','" + TotalAirSampledTextBox.Text
+                    + "','" + BKGCountsTextBox.Text + "','" + SampleCountsTextBox.Text + "','" + NetCountsTextBox.Text + "','" + ContaminationLevelTextBox.Text + "','" + DACTextBox.Text + "','" + RemarksTextBox.Text + "',"
+                    + UnitDropDownList.Text + ",'" + StatusDropDownList.Text + "','" + LivedTextBox.Text + "','" + AddShiftResponse.Shift + "','"
+                    + LocationUnitDropDownList.Text + "','" + PlantStatusDropDownList.Text + "','" + MaterialIdTextBox.Text + "','" + Session["UserId"].ToString() + "','" + RequestedByTextBox.Text + "','" + LocationFromDropDownList.Text
+                    + "','" + LocationToDropDownList.Text + "','" + PurposeDropDownList.Text + "','" + InstrumentLocationDropDownList.Text + "','" + MaterialCountedByDropDownList.Text + "')";
 
                 connection.Open();
                 MySqlCommand cmd = new MySqlCommand(sql, connection);
@@ -642,26 +637,14 @@ namespace CDMS_WebApp1._0
 
                 string s17;
 
-                s17 = "update new_cdms set counting_system='" + CountingSystemDropDownList.Text.ChangeNull() + "',counter_efficiency='" + CounterEfficiencyTextBox.Text.ChangeNull() + "',as_on='"
-                    + AsON.Text.ChangeNull() + "',  rack_number='" + RackDropDownList.Text.ChangeNull() + "',Room_No='" + LocationUnitDropDownList.Text.ChangeNull()
-                    + "',smear_airsample='" + SmearDropDownList.Text.ChangeNull() + "',aerosol_iodine='" + AerosolDropDownList.Text.ChangeNull() + "',time_ofsampling='"
-                    + TimeofSamplingTextBox.Text.ChangeNull() + "',time_ofcounting='" + TimeofCountingTextBox.Text.ChangeNull() + "',Elapsed_time='" + ElapsedTimeTextBox.Text.ChangeNull()
-                    + "',Area_correctionfactor='" + AreaCorrectionFactorTextBox.Text.ChangeNull() + "',Decay_correctionfactor='" + DecayCorrectionFactorTextBox.Text.ChangeNull()
-                    + "',halflife='" + HalfLifeTextBox.Text.ChangeNull() + "',flowrate='" + FlowrateTextBox.Text.ChangeNull() + "',sampling_time='" + SamplingTimeTextBox.Text.ChangeNull()
-                    + "',total_airsampled='" + TotalAirSampledTextBox.Text.ChangeNull() + "',Bkg_counttime='" + BKGCountTimeTextBox.Text.ChangeNull() + "',Sample_counttime='"
-                    + SampleCountTimeTextBox.Text.ChangeNull() + "',bkg_counts='" + BKGCountsTextBox.Text.ChangeNull() + "',gross_counts='" + SampleCountsTextBox.Text.ChangeNull() + "',net_counts='"
-                    + NetCountsTextBox.Text.ChangeNull() + "',Total_areaswiped='" + TotalAreaSwipedTextBox.Text.ChangeNull() + "',contamination_level='" + ContaminationLevelTextBox.Text.ChangeNull()
-                    + "',activity='" + AirActivityTextBox.Text.ChangeNull() + "',air_activity='" + DACTextBox.Text.ChangeNull() + "',Shift_Technician='" + AddShiftResponse.ShiftTechnician.ChangeNull() + "',remarks='"
-                    + RemarksTextBox.Text.ChangeNull() + "', unit=" + UnitDropDownList.Text.ChangeNull() + ",status='" + SampleDescriptionDropDownList.Text.ChangeNull() + "',LLD='" + LLDTextBox.Text.ChangeNull() + "',MDA_dpm='"
-                    + MDAdpmTextBox.Text.ChangeNull() + "',MDA_Bq='" + MDABqTextBox.Text.ChangeNull() + "',LLD_Bkg='" + LLDBKGTextBox.Text.ChangeNull() + "',Lived='" + LivedTextBox.Text + "',efficiency_unit="
-                    + LocationUnitDropDownList.Text.ChangeNull() + ",current_shift='" + AddShiftResponse.Shift.ChangeNull() + "',crew='" + AddShiftResponse.Crew.ChangeNull() + "', SHP='" + AddShiftResponse.Physicist1.ChangeNull()
-                    + "',SHP_Comments='" + AddShiftResponse.Physicist1Notes.ChangeNull() + "',Review_Officer='" + AddShiftResponse.Physicist1.ChangeNull() + "',Review_Comments='" + AddShiftResponse.Physicist1Notes
-                    + "',Contract_Staff1='" + AddShiftResponse.ContractStaff1.ChangeNull() + "',Contract_Staff2='" + AddShiftResponse.ContractStaff2.ChangeNull() + "',Contract_Staff3='"
-                    + AddShiftResponse.ContractStaff3.ChangeNull() + "',SHP1='" + AddShiftResponse.Physicist2 + "',SHP1_Comments='" + AddShiftResponse.Physicist2Notes.ChangeNull() + "',Location='"
-                    + LocationUnitDropDownList.Text.ChangeNull() + "',Approved_Comments='" + "comment" + "',Plant_Status='" + PlantStatusDropDownList.Text.ChangeNull() + "',SHP2='" + AddShiftResponse.PhysicistRSD.ChangeNull()
-                    + "',Material_ID='" + MaterialIdTextBox.Text.ChangeNull() + "',Contamination_Date='" + ContaminationDateTextBox.Text.ChangeNull()
-                    + "',Requested_By='" + RequestedByTextBox.Text.ChangeNull() + "',Location_From='" + LocationFromDropDownList.Text.ChangeNull() + "',Location_To='" + LocationToDropDownList.Text.ChangeNull() + "',Purpose='"
-                    + PurposeDropDownList.Text.ChangeNull() + "',Instrument_Location='" + InstrumentLocationDropDownList.Text.ChangeNull() + "',T2_Technician='" + AddShiftResponse.T2Technician.ChangeNull() + "',Material_Countedby='"
+                s17 = "update new_cdms set Room_No='" + LocationUnitDropDownList.Text.ChangeNull()
+                    + "',smear_airsample='" + SmearDropDownList.Text.ChangeNull() + "',flowrate='" + FlowrateTextBox.Text.ChangeNull() + "',sampling_time='" + SamplingTimeTextBox.Text.ChangeNull()
+                    + "',total_airsampled='" + TotalAirSampledTextBox.Text.ChangeNull() + "',bkg_counts='" + BKGCountsTextBox.Text.ChangeNull() + "',gross_counts='" + SampleCountsTextBox.Text.ChangeNull() + "',net_counts='"
+                    + NetCountsTextBox.Text.ChangeNull() + "',contamination_level='" + ContaminationLevelTextBox.Text.ChangeNull()
+                    + "',air_activity='" + DACTextBox.Text.ChangeNull() + "',remarks='"
+                    + RemarksTextBox.Text.ChangeNull() + "', unit=" + UnitDropDownList.Text.ChangeNull() + ",status='" + SampleDescriptionDropDownList.Text.ChangeNull() + "',Lived='" + LivedTextBox.Text + "',current_shift='" + AddShiftResponse.Shift.ChangeNull() + "',Location='"
+                    + LocationUnitDropDownList.Text.ChangeNull() + "',Plant_Status='" + PlantStatusDropDownList.Text.ChangeNull() + "',Material_ID='" + MaterialIdTextBox.Text.ChangeNull() + "',Requested_By='" + RequestedByTextBox.Text.ChangeNull() + "',Location_From='" + LocationFromDropDownList.Text.ChangeNull() + "',Location_To='" + LocationToDropDownList.Text.ChangeNull() + "',Purpose='"
+                    + PurposeDropDownList.Text.ChangeNull() + "',Instrument_Location='" + InstrumentLocationDropDownList.Text.ChangeNull() + "',Material_Countedby='"
                     + MaterialCountedByDropDownList.Text.ChangeNull() + "'   where sl_no=" + SearchDropDownList.Text + "";
 
                 MySqlConnection connection = new MySqlConnection(_connectionString);
@@ -810,75 +793,75 @@ namespace CDMS_WebApp1._0
             AddShiftModel fetchedShiftModel = new AddShiftModel();
             SearchDropDownList.Text = (rs1z.IsDBNull(0) ? null : rs1z.GetInt32(0).ToString());
             fetchedShiftModel.Date = (rs1z.IsDBNull(1) ? null : rs1z.GetDateTime(1).ToString("yyyy-MM-dd"));
-            LocationUnitDropDownList.Text = (rs1z.IsDBNull(36) ? null : rs1z.GetInt32(36).ToString());
+            LocationUnitDropDownList.Text = (rs1z.IsDBNull(17) ? null : rs1z.GetInt32(17).ToString());
             LocationUnitDropDownList_SelectedIndexChanged(null, new EventArgs() { });
             //LoadCountingSystem();
-            CountingSystemDropDownList.Text = (rs1z.IsDBNull(2) ? null : rs1z.GetString(2));
-            CounterEfficiencyTextBox.Text = (rs1z.IsDBNull(3) ? null : rs1z.GetString(3));
-            AsON.Text = (rs1z.IsDBNull(4) ? null : rs1z.GetDateTime(4).ToString("yyyy-MM-dd"));
-            RackDropDownList.Items.Clear();
-            RackDropDownList.Items.Add(rs1z.IsDBNull(5) ? string.Empty : rs1z.GetString(5));
+            //CountingSystemDropDownList.Text = (rs1z.IsDBNull(2) ? null : rs1z.GetString(2));
+            //CounterEfficiencyTextBox.Text = (rs1z.IsDBNull(3) ? null : rs1z.GetString(3));
+            //AsON.Text = (rs1z.IsDBNull(4) ? null : rs1z.GetDateTime(4).ToString("yyyy-MM-dd"));
+            //RackDropDownList.Items.Clear();
+            //RackDropDownList.Items.Add(rs1z.IsDBNull(5) ? string.Empty : rs1z.GetString(5));
             //RackDropDownList.Text = (rs1z.IsDBNull(5) ? null : rs1z.GetString(5));
             //SampleDescriptionDropDownList.Text = (rs1z.IsDBNull(6) ? null : rs1z.GetString(6));
-            var sd = (rs1z.IsDBNull(6) ? null : rs1z.GetString(6));
-            SmearDropDownList.Text = (rs1z.IsDBNull(7) ? null : rs1z.GetString(7));
-            AerosolDropDownList.Text = (rs1z.IsDBNull(8) ? null : rs1z.GetString(8));
-            TimeofSamplingTextBox.Text = (rs1z.IsDBNull(9) ? null : rs1z.GetString(9));
-            TimeofCountingTextBox.Text = (rs1z.IsDBNull(10) ? null : rs1z.GetString(10));
-            ElapsedTimeTextBox.Text = (rs1z.IsDBNull(11) ? null : rs1z.GetString(11));
-            AreaCorrectionFactorTextBox.Text = (rs1z.IsDBNull(12) ? null : rs1z.GetString(12));
-            DecayCorrectionFactorTextBox.Text = (rs1z.IsDBNull(13) ? null : rs1z.GetString(13));
-            HalfLifeTextBox.Text = (rs1z.IsDBNull(14) ? null : rs1z.GetString(14));
-            FlowrateTextBox.Text = (rs1z.IsDBNull(15) ? null : rs1z.GetString(15));
-            SamplingTimeTextBox.Text = (rs1z.IsDBNull(16) ? null : rs1z.GetString(16));
-            TotalAirSampledTextBox.Text = (rs1z.IsDBNull(17) ? null : rs1z.GetString(17));
-            BKGCountTimeTextBox.Text = (rs1z.IsDBNull(18) ? null : rs1z.GetString(18));
-            SampleCountTimeTextBox.Text = (rs1z.IsDBNull(19) ? null : rs1z.GetString(19));
-            BKGCountsTextBox.Text = (rs1z.IsDBNull(20) ? null : rs1z.GetString(20));
-            SampleCountsTextBox.Text = (rs1z.IsDBNull(21) ? null : rs1z.GetString(21));
-            NetCountsTextBox.Text = (rs1z.IsDBNull(22) ? null : rs1z.GetString(22));
-            TotalAreaSwipedTextBox.Text = (rs1z.IsDBNull(23) ? null : rs1z.GetString(23));
-            ContaminationLevelTextBox.Text = (rs1z.IsDBNull(24) ? null : rs1z.GetString(24));
-            AirActivityTextBox.Text = (rs1z.IsDBNull(25) ? null : rs1z.GetString(25));
-            DACTextBox.Text = (rs1z.IsDBNull(26) ? null : rs1z.GetString(26));
-            fetchedShiftModel.ShiftTechnician = (rs1z.IsDBNull(27) ? null : rs1z.GetString(27));
-            RemarksTextBox.Text = (rs1z.IsDBNull(28) ? null : rs1z.GetString(28));
-            UnitDropDownList.Text = (rs1z.IsDBNull(29) ? null : rs1z.GetInt32(29).ToString());
+            var sd = (rs1z.IsDBNull(2) ? null : rs1z.GetString(2));
+            SmearDropDownList.Text = (rs1z.IsDBNull(3) ? null : rs1z.GetString(3));
+            //AerosolDropDownList.Text = (rs1z.IsDBNull(8) ? null : rs1z.GetString(8));
+            //TimeofSamplingTextBox.Text = (rs1z.IsDBNull(9) ? null : rs1z.GetString(9));
+            //TimeofCountingTextBox.Text = (rs1z.IsDBNull(10) ? null : rs1z.GetString(10));
+            //ElapsedTimeTextBox.Text = (rs1z.IsDBNull(11) ? null : rs1z.GetString(11));
+            //AreaCorrectionFactorTextBox.Text = (rs1z.IsDBNull(12) ? null : rs1z.GetString(12));
+            //DecayCorrectionFactorTextBox.Text = (rs1z.IsDBNull(13) ? null : rs1z.GetString(13));
+            //HalfLifeTextBox.Text = (rs1z.IsDBNull(14) ? null : rs1z.GetString(14));
+            FlowrateTextBox.Text = (rs1z.IsDBNull(4) ? null : rs1z.GetString(4));
+            SamplingTimeTextBox.Text = (rs1z.IsDBNull(5) ? null : rs1z.GetString(5));
+            TotalAirSampledTextBox.Text = (rs1z.IsDBNull(6) ? null : rs1z.GetString(6));
+            //BKGCountTimeTextBox.Text = (rs1z.IsDBNull(18) ? null : rs1z.GetString(18));
+            //SampleCountTimeTextBox.Text = (rs1z.IsDBNull(19) ? null : rs1z.GetString(19));
+            BKGCountsTextBox.Text = (rs1z.IsDBNull(7) ? null : rs1z.GetString(7));
+            SampleCountsTextBox.Text = (rs1z.IsDBNull(8) ? null : rs1z.GetString(8));
+            NetCountsTextBox.Text = (rs1z.IsDBNull(9) ? null : rs1z.GetString(9));
+            //TotalAreaSwipedTextBox.Text = (rs1z.IsDBNull(23) ? null : rs1z.GetString(23));
+            ContaminationLevelTextBox.Text = (rs1z.IsDBNull(10) ? null : rs1z.GetString(10));
+            //AirActivityTextBox.Text = (rs1z.IsDBNull(25) ? null : rs1z.GetString(25));
+            DACTextBox.Text = (rs1z.IsDBNull(11) ? null : rs1z.GetString(11));
+            //fetchedShiftModel.ShiftTechnician = (rs1z.IsDBNull(27) ? null : rs1z.GetString(27));
+            RemarksTextBox.Text = (rs1z.IsDBNull(12) ? null : rs1z.GetString(12));
+            UnitDropDownList.Text = (rs1z.IsDBNull(13) ? null : rs1z.GetInt32(13).ToString());
             //StatusDropDownList.Text = (rs1z.IsDBNull(30) ? null : rs1z.GetString(30));
-            var status = (rs1z.IsDBNull(30) ? null : rs1z.GetString(30));
-            LLDTextBox.Text = (rs1z.IsDBNull(31) ? null : rs1z.GetString(31));
-            MDAdpmTextBox.Text = (rs1z.IsDBNull(32) ? null : rs1z.GetString(32));
-            MDABqTextBox.Text = (rs1z.IsDBNull(33) ? null : rs1z.GetString(33));
-            LLDBKGTextBox.Text = (rs1z.IsDBNull(34) ? null : rs1z.GetString(34));
-            LivedTextBox.Text = (rs1z.IsDBNull(35) ? null : rs1z.GetString(35));
+            var status = (rs1z.IsDBNull(14) ? null : rs1z.GetString(14));
+            //LLDTextBox.Text = (rs1z.IsDBNull(31) ? null : rs1z.GetString(31));
+            //MDAdpmTextBox.Text = (rs1z.IsDBNull(32) ? null : rs1z.GetString(32));
+            //MDABqTextBox.Text = (rs1z.IsDBNull(33) ? null : rs1z.GetString(33));
+            //LLDBKGTextBox.Text = (rs1z.IsDBNull(34) ? null : rs1z.GetString(34));
+            LivedTextBox.Text = (rs1z.IsDBNull(15) ? null : rs1z.GetString(15));
             //LocationUnitDropDownList.Text = (rs1z.IsDBNull(36) ? null : rs1z.GetInt32(36).ToString());
-            fetchedShiftModel.Shift = (rs1z.IsDBNull(37) ? null : rs1z.GetString(37));
-            fetchedShiftModel.Crew = (rs1z.IsDBNull(38) ? null : rs1z.GetString(38));
-            fetchedShiftModel.Physicist1 = (rs1z.IsDBNull(39) ? null : rs1z.GetString(39));
-            fetchedShiftModel.Physicist1Notes = (rs1z.IsDBNull(40) ? null : rs1z.GetString(40));
-            fetchedShiftModel.Physicist1 = (rs1z.IsDBNull(41) ? null : rs1z.GetString(41));
-            fetchedShiftModel.Physicist1Notes = (rs1z.IsDBNull(42) ? null : rs1z.GetString(42));
-            fetchedShiftModel.ContractStaff1 = (rs1z.IsDBNull(43) ? null : rs1z.GetString(43));
-            fetchedShiftModel.ContractStaff2 = (rs1z.IsDBNull(44) ? null : rs1z.GetString(44));
-            fetchedShiftModel.ContractStaff3 = (rs1z.IsDBNull(45) ? null : rs1z.GetString(45));
-            fetchedShiftModel.Physicist2 = (rs1z.IsDBNull(46) ? null : rs1z.GetString(46));
-            fetchedShiftModel.Physicist2Notes = (rs1z.IsDBNull(47) ? null : rs1z.GetString(47));
+            fetchedShiftModel.Shift = (rs1z.IsDBNull(16) ? null : rs1z.GetString(16));
+            //fetchedShiftModel.Crew = (rs1z.IsDBNull(38) ? null : rs1z.GetString(38));
+            //fetchedShiftModel.Physicist1 = (rs1z.IsDBNull(39) ? null : rs1z.GetString(39));
+            //fetchedShiftModel.Physicist1Notes = (rs1z.IsDBNull(40) ? null : rs1z.GetString(40));
+            //fetchedShiftModel.Physicist1 = (rs1z.IsDBNull(41) ? null : rs1z.GetString(41));
+            //fetchedShiftModel.Physicist1Notes = (rs1z.IsDBNull(42) ? null : rs1z.GetString(42));
+            //fetchedShiftModel.ContractStaff1 = (rs1z.IsDBNull(43) ? null : rs1z.GetString(43));
+            //fetchedShiftModel.ContractStaff2 = (rs1z.IsDBNull(44) ? null : rs1z.GetString(44));
+            //fetchedShiftModel.ContractStaff3 = (rs1z.IsDBNull(45) ? null : rs1z.GetString(45));
+            //fetchedShiftModel.Physicist2 = (rs1z.IsDBNull(46) ? null : rs1z.GetString(46));
+            //fetchedShiftModel.Physicist2Notes = (rs1z.IsDBNull(47) ? null : rs1z.GetString(47));
             //BuildingTextBox.Text = (rs1z.IsDBNull(48) ? null : rs1z.GetString(48));
             //TextBox30.Text = (rs1z.IsDBNull(49) ? null : rs1z.GetString(49));
-            PlantStatusDropDownList.Text = (rs1z.IsDBNull(50) ? null : rs1z.GetString(50));
-            fetchedShiftModel.PhysicistRSD = (rs1z.IsDBNull(51) ? null : rs1z.GetString(51));
-            MaterialIdTextBox.Text = (rs1z.IsDBNull(52) ? null : rs1z.GetInt32(52).ToString());
-            ContaminationDateTextBox.Text = (rs1z.IsDBNull(53) ? null : rs1z.GetDateTime(53).ToString());
+            PlantStatusDropDownList.Text = (rs1z.IsDBNull(18) ? null : rs1z.GetString(18));
+            //fetchedShiftModel.PhysicistRSD = (rs1z.IsDBNull(51) ? null : rs1z.GetString(51));
+            MaterialIdTextBox.Text = (rs1z.IsDBNull(19) ? null : rs1z.GetInt32(19).ToString());
+            //ContaminationDateTextBox.Text = (rs1z.IsDBNull(53) ? null : rs1z.GetDateTime(53).ToString());
             //Login.username.Text = (rs1z.IsDBNull(54) ? null : rs1z.GetString(54));
-            RequestedByTextBox.Text = (rs1z.IsDBNull(55) ? null : rs1z.GetString(55));
-            LocationFromDropDownList.Text = (rs1z.IsDBNull(56) ? null : rs1z.GetString(56));
-            LocationToDropDownList.Text = (rs1z.IsDBNull(57) ? null : rs1z.GetString(57));
-            PurposeDropDownList.Text = (rs1z.IsDBNull(58) ? null : rs1z.GetString(58));
+            RequestedByTextBox.Text = (rs1z.IsDBNull(21) ? null : rs1z.GetString(21));
+            LocationFromDropDownList.Text = (rs1z.IsDBNull(22) ? null : rs1z.GetString(22));
+            LocationToDropDownList.Text = (rs1z.IsDBNull(23) ? null : rs1z.GetString(23));
+            PurposeDropDownList.Text = (rs1z.IsDBNull(24) ? null : rs1z.GetString(24));
             InstrumentLocationDropDownList.Items.Clear();
-            InstrumentLocationDropDownList.Items.Add(rs1z.IsDBNull(59) ? string.Empty : rs1z.GetString(59));
+            InstrumentLocationDropDownList.Items.Add(rs1z.IsDBNull(25) ? string.Empty : rs1z.GetString(25));
             //InstrumentLocationDropDownList.Text = (rs1z.IsDBNull(59) ? null : rs1z.GetString(59));
-            fetchedShiftModel.T2Technician = (rs1z.IsDBNull(60) ? null : rs1z.GetString(60));
-            MaterialCountedByDropDownList.Text = (rs1z.IsDBNull(61) ? null : rs1z.GetString(61));
+            //fetchedShiftModel.T2Technician = (rs1z.IsDBNull(60) ? null : rs1z.GetString(60));
+            MaterialCountedByDropDownList.Text = (rs1z.IsDBNull(26) ? null : rs1z.GetString(26));
 
             AddShiftResponse = fetchedShiftModel;
 

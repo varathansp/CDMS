@@ -30,9 +30,9 @@ namespace CDMS_WebApp1._0
             rs2 = cmd2.ExecuteReader();
             while ((rs2.Read()))
             {
-                Label2.Text = (rs2["shp"].ToString());
-                Label3.Text = (rs2["shp1"].ToString());
-                Label4.Text = (rs2["shift_technician"].ToString());
+                //Label2.Text = (rs2["shp"].ToString());
+                //Label3.Text = (rs2["shp1"].ToString());
+                //Label4.Text = (rs2["shift_technician"].ToString());
             }
 
             rs2.Close();
